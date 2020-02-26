@@ -21,11 +21,11 @@ function loop(){
     hero.moveLeft()
   }
     if (keyPressed["ArrowUp"]) {
-    hero.moveUp()
+    hero.jump()
   }
-    if (keyPressed["ArrowDown"]) {
-    hero.moveDown()
-  }
+
+  hero.step()
+
   // erase hero and redraw
   ERASE()
   shapes.forEach(s => s.draw())

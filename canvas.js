@@ -6,7 +6,7 @@ CANVAS.height = document.body.clientHeight
 let CTX = CANVAS.getContext("2d")
 
 function ERASE (){
-CTX.fillStyle = "lightblue"
+CTX.fillStyle = "lightgreen"
 CTX.fillRect(
   0,
   0,
@@ -15,6 +15,8 @@ CTX.fillRect(
 
  )
  }
+
+ let GRIDSIZE = CANVAS.height / 12
 
 
 
