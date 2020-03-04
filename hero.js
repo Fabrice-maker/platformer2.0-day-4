@@ -1,6 +1,7 @@
 
-let heroStand = new Sprite("images/heros/yellow/alienYellow_stand.png")
-let heroJump = new Sprite("images/heros/yellow/alienYellow_jump.png")
+let heroStand = new Sprite("images/alienYellow_stand.png")
+let heroJump = new Sprite("images/alienYellow_jump.png")
+let heroWalk1 = new Sprite("images/alienYellow_walk1.png")
 
 class Hero {
   constructor() {
@@ -34,18 +35,33 @@ class Hero {
 
   // gragity controls
 
-  step(){
-    this.dy = this.dy + GRIDSIZE/60
+  step(platforms){
+   this.dy = this.dy + GRIDSIZE/60
     if(this.dy > GRIDSIZE) {
       this.dy = GRIDSIZE - 1
     }
+
     this.y = this.y + this.dy
+
+    platforms.forEach(p => {
+      let isInsideY = this.y > p.y && this.y < p.y + p.height
+      let isInsideX = this.x > p.x && this.x < p.x + p.width
+      if(isInsideX && isInsideY) {
+        this.y = p.y
+        this.dy = 0
+        this.airborne = false
+      }
+      
+    })
+
+    // check if on ground
     if(this.y > CANVAS.height) {
       this.y = CANVAS.height
+      this.dy = 0
       this.airborne = false
     }
   }
-
+  
   // load hero images
   draw() {
     CTX.fillStyle = 'white'
@@ -58,8 +74,7 @@ class Hero {
       imageToDraw = heroJump
     }
     imageToDraw.draw(this.x - this.width / 2, this.y - this.height, this.width, this.height)
-
-    }  
+  }
 }
 
 

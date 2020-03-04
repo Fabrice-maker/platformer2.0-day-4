@@ -15,7 +15,7 @@ CTX.fillRect(
 
  )
  }
-
+ let maxY = 12
  let GRIDSIZE = CANVAS.height / 12
 
 
